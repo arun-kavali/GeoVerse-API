@@ -279,39 +279,6 @@ export type Database = {
           },
         ]
       }
-      villages_raw: {
-        Row: {
-          district_code: string | null
-          district_name: string | null
-          state_code: string | null
-          state_name: string | null
-          subdistrict_code: string | null
-          subdistrict_name: string | null
-          village_code: string | null
-          village_name: string | null
-        }
-        Insert: {
-          district_code?: string | null
-          district_name?: string | null
-          state_code?: string | null
-          state_name?: string | null
-          subdistrict_code?: string | null
-          subdistrict_name?: string | null
-          village_code?: string | null
-          village_name?: string | null
-        }
-        Update: {
-          district_code?: string | null
-          district_name?: string | null
-          state_code?: string | null
-          state_name?: string | null
-          subdistrict_code?: string | null
-          subdistrict_name?: string | null
-          village_code?: string | null
-          village_name?: string | null
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
