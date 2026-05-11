@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicVillagesRouteImport } from './routes/api/public/villages'
+import { Route as ApiPublicSubDistrictsRouteImport } from './routes/api/public/sub-districts'
+import { Route as ApiPublicStatesRouteImport } from './routes/api/public/states'
+import { Route as ApiPublicSearchRouteImport } from './routes/api/public/search'
+import { Route as ApiPublicDistrictsRouteImport } from './routes/api/public/districts'
+import { Route as ApiPublicAutocompleteRouteImport } from './routes/api/public/autocomplete'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicVillagesRoute = ApiPublicVillagesRouteImport.update({
+  id: '/api/public/villages',
+  path: '/api/public/villages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicSubDistrictsRoute = ApiPublicSubDistrictsRouteImport.update({
+  id: '/api/public/sub-districts',
+  path: '/api/public/sub-districts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicStatesRoute = ApiPublicStatesRouteImport.update({
+  id: '/api/public/states',
+  path: '/api/public/states',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicSearchRoute = ApiPublicSearchRouteImport.update({
+  id: '/api/public/search',
+  path: '/api/public/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicDistrictsRoute = ApiPublicDistrictsRouteImport.update({
+  id: '/api/public/districts',
+  path: '/api/public/districts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicAutocompleteRoute = ApiPublicAutocompleteRouteImport.update({
+  id: '/api/public/autocomplete',
+  path: '/api/public/autocomplete',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
+  '/api/public/districts': typeof ApiPublicDistrictsRoute
+  '/api/public/search': typeof ApiPublicSearchRoute
+  '/api/public/states': typeof ApiPublicStatesRoute
+  '/api/public/sub-districts': typeof ApiPublicSubDistrictsRoute
+  '/api/public/villages': typeof ApiPublicVillagesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
+  '/api/public/districts': typeof ApiPublicDistrictsRoute
+  '/api/public/search': typeof ApiPublicSearchRoute
+  '/api/public/states': typeof ApiPublicStatesRoute
+  '/api/public/sub-districts': typeof ApiPublicSubDistrictsRoute
+  '/api/public/villages': typeof ApiPublicVillagesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
+  '/api/public/districts': typeof ApiPublicDistrictsRoute
+  '/api/public/search': typeof ApiPublicSearchRoute
+  '/api/public/states': typeof ApiPublicStatesRoute
+  '/api/public/sub-districts': typeof ApiPublicSubDistrictsRoute
+  '/api/public/villages': typeof ApiPublicVillagesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/public/autocomplete'
+    | '/api/public/districts'
+    | '/api/public/search'
+    | '/api/public/states'
+    | '/api/public/sub-districts'
+    | '/api/public/villages'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/public/autocomplete'
+    | '/api/public/districts'
+    | '/api/public/search'
+    | '/api/public/states'
+    | '/api/public/sub-districts'
+    | '/api/public/villages'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/autocomplete'
+    | '/api/public/districts'
+    | '/api/public/search'
+    | '/api/public/states'
+    | '/api/public/sub-districts'
+    | '/api/public/villages'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicAutocompleteRoute: typeof ApiPublicAutocompleteRoute
+  ApiPublicDistrictsRoute: typeof ApiPublicDistrictsRoute
+  ApiPublicSearchRoute: typeof ApiPublicSearchRoute
+  ApiPublicStatesRoute: typeof ApiPublicStatesRoute
+  ApiPublicSubDistrictsRoute: typeof ApiPublicSubDistrictsRoute
+  ApiPublicVillagesRoute: typeof ApiPublicVillagesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,12 +130,70 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/villages': {
+      id: '/api/public/villages'
+      path: '/api/public/villages'
+      fullPath: '/api/public/villages'
+      preLoaderRoute: typeof ApiPublicVillagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/sub-districts': {
+      id: '/api/public/sub-districts'
+      path: '/api/public/sub-districts'
+      fullPath: '/api/public/sub-districts'
+      preLoaderRoute: typeof ApiPublicSubDistrictsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/states': {
+      id: '/api/public/states'
+      path: '/api/public/states'
+      fullPath: '/api/public/states'
+      preLoaderRoute: typeof ApiPublicStatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/search': {
+      id: '/api/public/search'
+      path: '/api/public/search'
+      fullPath: '/api/public/search'
+      preLoaderRoute: typeof ApiPublicSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/districts': {
+      id: '/api/public/districts'
+      path: '/api/public/districts'
+      fullPath: '/api/public/districts'
+      preLoaderRoute: typeof ApiPublicDistrictsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/autocomplete': {
+      id: '/api/public/autocomplete'
+      path: '/api/public/autocomplete'
+      fullPath: '/api/public/autocomplete'
+      preLoaderRoute: typeof ApiPublicAutocompleteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicAutocompleteRoute: ApiPublicAutocompleteRoute,
+  ApiPublicDistrictsRoute: ApiPublicDistrictsRoute,
+  ApiPublicSearchRoute: ApiPublicSearchRoute,
+  ApiPublicStatesRoute: ApiPublicStatesRoute,
+  ApiPublicSubDistrictsRoute: ApiPublicSubDistrictsRoute,
+  ApiPublicVillagesRoute: ApiPublicVillagesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
