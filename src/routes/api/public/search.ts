@@ -14,9 +14,9 @@ export const Route = createFileRoute("/api/public/search")({
         const q = url.searchParams.get("q") ?? "";
         const limit = parseInt0(url.searchParams.get("limit"), 50, 200);
         const offset = parseInt0(url.searchParams.get("offset"), 0);
-        const stateId = parseInt0(url.searchParams.get("state_id"), 0) || null;
-        const districtId = parseInt0(url.searchParams.get("district_id"), 0) || null;
-        const subdistrictId = parseInt0(url.searchParams.get("subdistrict_id"), 0) || null;
+        const stateId = parseInt0(url.searchParams.get("state_id"), 0) || undefined;
+        const districtId = parseInt0(url.searchParams.get("district_id"), 0) || undefined;
+        const subdistrictId = parseInt0(url.searchParams.get("subdistrict_id"), 0) || undefined;
 
         const { data, error } = await supabaseAdmin.rpc("search_villages", {
           q,
