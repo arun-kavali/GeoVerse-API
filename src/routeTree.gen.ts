@@ -9,19 +9,45 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
 import { Route as ApiPublicVillagesRouteImport } from './routes/api/public/villages'
 import { Route as ApiPublicSubDistrictsRouteImport } from './routes/api/public/sub-districts'
 import { Route as ApiPublicStatesRouteImport } from './routes/api/public/states'
 import { Route as ApiPublicSearchRouteImport } from './routes/api/public/search'
 import { Route as ApiPublicDistrictsRouteImport } from './routes/api/public/districts'
 import { Route as ApiPublicAutocompleteRouteImport } from './routes/api/public/autocomplete'
+import { Route as AuthenticatedDashboardExplorerRouteImport } from './routes/_authenticated/dashboard.explorer'
+import { Route as AuthenticatedDashboardDocsRouteImport } from './routes/_authenticated/dashboard.docs'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/dashboard/',
+    path: '/dashboard/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const ApiPublicVillagesRoute = ApiPublicVillagesRouteImport.update({
   id: '/api/public/villages',
   path: '/api/public/villages',
@@ -52,67 +78,114 @@ const ApiPublicAutocompleteRoute = ApiPublicAutocompleteRouteImport.update({
   path: '/api/public/autocomplete',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedDashboardExplorerRoute =
+  AuthenticatedDashboardExplorerRouteImport.update({
+    id: '/dashboard/explorer',
+    path: '/dashboard/explorer',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardDocsRoute =
+  AuthenticatedDashboardDocsRouteImport.update({
+    id: '/dashboard/docs',
+    path: '/dashboard/docs',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/dashboard/docs': typeof AuthenticatedDashboardDocsRoute
+  '/dashboard/explorer': typeof AuthenticatedDashboardExplorerRoute
   '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
   '/api/public/districts': typeof ApiPublicDistrictsRoute
   '/api/public/search': typeof ApiPublicSearchRoute
   '/api/public/states': typeof ApiPublicStatesRoute
   '/api/public/sub-districts': typeof ApiPublicSubDistrictsRoute
   '/api/public/villages': typeof ApiPublicVillagesRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/dashboard/docs': typeof AuthenticatedDashboardDocsRoute
+  '/dashboard/explorer': typeof AuthenticatedDashboardExplorerRoute
   '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
   '/api/public/districts': typeof ApiPublicDistrictsRoute
   '/api/public/search': typeof ApiPublicSearchRoute
   '/api/public/states': typeof ApiPublicStatesRoute
   '/api/public/sub-districts': typeof ApiPublicSubDistrictsRoute
   '/api/public/villages': typeof ApiPublicVillagesRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/dashboard/docs': typeof AuthenticatedDashboardDocsRoute
+  '/_authenticated/dashboard/explorer': typeof AuthenticatedDashboardExplorerRoute
   '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
   '/api/public/districts': typeof ApiPublicDistrictsRoute
   '/api/public/search': typeof ApiPublicSearchRoute
   '/api/public/states': typeof ApiPublicStatesRoute
   '/api/public/sub-districts': typeof ApiPublicSubDistrictsRoute
   '/api/public/villages': typeof ApiPublicVillagesRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/signup'
+    | '/dashboard/docs'
+    | '/dashboard/explorer'
     | '/api/public/autocomplete'
     | '/api/public/districts'
     | '/api/public/search'
     | '/api/public/states'
     | '/api/public/sub-districts'
     | '/api/public/villages'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
+    | '/signup'
+    | '/dashboard/docs'
+    | '/dashboard/explorer'
     | '/api/public/autocomplete'
     | '/api/public/districts'
     | '/api/public/search'
     | '/api/public/states'
     | '/api/public/sub-districts'
     | '/api/public/villages'
+    | '/dashboard'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/login'
+    | '/signup'
+    | '/_authenticated/dashboard/docs'
+    | '/_authenticated/dashboard/explorer'
     | '/api/public/autocomplete'
     | '/api/public/districts'
     | '/api/public/search'
     | '/api/public/states'
     | '/api/public/sub-districts'
     | '/api/public/villages'
+    | '/_authenticated/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
   ApiPublicAutocompleteRoute: typeof ApiPublicAutocompleteRoute
   ApiPublicDistrictsRoute: typeof ApiPublicDistrictsRoute
   ApiPublicSearchRoute: typeof ApiPublicSearchRoute
@@ -123,12 +196,40 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/api/public/villages': {
       id: '/api/public/villages'
@@ -172,11 +273,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAutocompleteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/dashboard/explorer': {
+      id: '/_authenticated/dashboard/explorer'
+      path: '/dashboard/explorer'
+      fullPath: '/dashboard/explorer'
+      preLoaderRoute: typeof AuthenticatedDashboardExplorerRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/docs': {
+      id: '/_authenticated/dashboard/docs'
+      path: '/dashboard/docs'
+      fullPath: '/dashboard/docs'
+      preLoaderRoute: typeof AuthenticatedDashboardDocsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedDashboardDocsRoute: typeof AuthenticatedDashboardDocsRoute
+  AuthenticatedDashboardExplorerRoute: typeof AuthenticatedDashboardExplorerRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedDashboardDocsRoute: AuthenticatedDashboardDocsRoute,
+  AuthenticatedDashboardExplorerRoute: AuthenticatedDashboardExplorerRoute,
+  AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
   ApiPublicAutocompleteRoute: ApiPublicAutocompleteRoute,
   ApiPublicDistrictsRoute: ApiPublicDistrictsRoute,
   ApiPublicSearchRoute: ApiPublicSearchRoute,
@@ -187,3 +321,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
