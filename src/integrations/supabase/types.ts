@@ -284,12 +284,62 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      autocomplete_villages: {
+        Args: { p_limit?: number; q: string }
+        Returns: {
+          district_name: string
+          state_name: string
+          village_id: number
+          village_name: string
+        }[]
+      }
+      consume_api_key: {
+        Args: { p_endpoint: string; p_key: string }
+        Returns: {
+          allowed: boolean
+          api_key_id: string
+          reason: string
+          user_id: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      log_api_request: {
+        Args: {
+          p_api_key_id: string
+          p_endpoint: string
+          p_response_time_ms: number
+          p_status_code: number
+          p_user_id: string
+        }
+        Returns: undefined
+      }
+      search_villages: {
+        Args: {
+          p_district_id?: number
+          p_limit?: number
+          p_offset?: number
+          p_state_id?: number
+          p_subdistrict_id?: number
+          q?: string
+        }
+        Returns: {
+          district_id: number
+          district_name: string
+          state_id: number
+          state_name: string
+          subdistrict_id: number
+          subdistrict_name: string
+          total_count: number
+          village_code: string
+          village_id: number
+          village_name: string
+        }[]
       }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
