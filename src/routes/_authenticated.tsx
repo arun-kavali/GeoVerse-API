@@ -1,6 +1,8 @@
-import { createFileRoute, Link, Outlet, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
+import { DashboardSidebar } from "@/components/dashboard-sidebar";
+import { Input } from "@/components/ui/input";
+import { Search, Bell } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async ({ location }) => {
@@ -13,29 +15,27 @@ export const Route = createFileRoute("/_authenticated")({
 });
 
 function AuthenticatedLayout() {
-  const navigate = useNavigate();
-  const signOut = async () => {
-    await supabase.auth.signOut();
-    navigate({ to: "/login" });
-  };
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container mx-auto flex items-center justify-between px-4 py-3">
-          <Link to="/dashboard" className="text-lg font-semibold">
-            🇮🇳 Villages API
-          </Link>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
-            <Link to="/dashboard/explorer" className="hover:underline">Explorer</Link>
-            <Link to="/dashboard/docs" className="hover:underline">API Docs</Link>
-            <Button variant="outline" size="sm" onClick={signOut}>Sign out</Button>
-          </nav>
-        </div>
-      </header>
-      <main className="container mx-auto px-4 py-8">
-        <Outlet />
-      </main>
+    <div className="flex min-h-screen bg-muted/30">
+      <DashboardSidebar />
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="flex h-14 items-center justify-between gap-4 border-b bg-background px-6">
+          <div className="relative w-full max-w-md">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input placeholder="Search villages, districts, states…" className="h-9 pl-9" />
+          </div>
+          <div className="flex items-center gap-3">
+            <button className="relative rounded-md p-2 text-muted-foreground hover:bg-muted hover:text-foreground">
+              <Bell className="h-4 w-4" />
+              <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
+            </button>
+            <div className="grid h-8 w-8 place-items-center rounded-full bg-primary text-xs font-medium text-primary-foreground">U</div>
+          </div>
+        </header>
+        <main className="flex-1 p-6 lg:p-8">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
