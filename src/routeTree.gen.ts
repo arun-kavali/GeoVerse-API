@@ -20,8 +20,15 @@ import { Route as ApiPublicStatesRouteImport } from './routes/api/public/states'
 import { Route as ApiPublicSearchRouteImport } from './routes/api/public/search'
 import { Route as ApiPublicDistrictsRouteImport } from './routes/api/public/districts'
 import { Route as ApiPublicAutocompleteRouteImport } from './routes/api/public/autocomplete'
+import { Route as AuthenticatedDashboardUsersRouteImport } from './routes/_authenticated/dashboard.users'
+import { Route as AuthenticatedDashboardUploadRouteImport } from './routes/_authenticated/dashboard.upload'
+import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated/dashboard.settings'
 import { Route as AuthenticatedDashboardExplorerRouteImport } from './routes/_authenticated/dashboard.explorer'
 import { Route as AuthenticatedDashboardDocsRouteImport } from './routes/_authenticated/dashboard.docs'
+import { Route as AuthenticatedDashboardDatasetsRouteImport } from './routes/_authenticated/dashboard.datasets'
+import { Route as AuthenticatedDashboardApiLogsRouteImport } from './routes/_authenticated/dashboard.api-logs'
+import { Route as AuthenticatedDashboardApiKeysRouteImport } from './routes/_authenticated/dashboard.api-keys'
+import { Route as AuthenticatedDashboardAnalyticsRouteImport } from './routes/_authenticated/dashboard.analytics'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -78,6 +85,24 @@ const ApiPublicAutocompleteRoute = ApiPublicAutocompleteRouteImport.update({
   path: '/api/public/autocomplete',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedDashboardUsersRoute =
+  AuthenticatedDashboardUsersRouteImport.update({
+    id: '/dashboard/users',
+    path: '/dashboard/users',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardUploadRoute =
+  AuthenticatedDashboardUploadRouteImport.update({
+    id: '/dashboard/upload',
+    path: '/dashboard/upload',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardSettingsRoute =
+  AuthenticatedDashboardSettingsRouteImport.update({
+    id: '/dashboard/settings',
+    path: '/dashboard/settings',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDashboardExplorerRoute =
   AuthenticatedDashboardExplorerRouteImport.update({
     id: '/dashboard/explorer',
@@ -90,13 +115,44 @@ const AuthenticatedDashboardDocsRoute =
     path: '/dashboard/docs',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedDashboardDatasetsRoute =
+  AuthenticatedDashboardDatasetsRouteImport.update({
+    id: '/dashboard/datasets',
+    path: '/dashboard/datasets',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardApiLogsRoute =
+  AuthenticatedDashboardApiLogsRouteImport.update({
+    id: '/dashboard/api-logs',
+    path: '/dashboard/api-logs',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardApiKeysRoute =
+  AuthenticatedDashboardApiKeysRouteImport.update({
+    id: '/dashboard/api-keys',
+    path: '/dashboard/api-keys',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardAnalyticsRoute =
+  AuthenticatedDashboardAnalyticsRouteImport.update({
+    id: '/dashboard/analytics',
+    path: '/dashboard/analytics',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
+  '/dashboard/api-keys': typeof AuthenticatedDashboardApiKeysRoute
+  '/dashboard/api-logs': typeof AuthenticatedDashboardApiLogsRoute
+  '/dashboard/datasets': typeof AuthenticatedDashboardDatasetsRoute
   '/dashboard/docs': typeof AuthenticatedDashboardDocsRoute
   '/dashboard/explorer': typeof AuthenticatedDashboardExplorerRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard/upload': typeof AuthenticatedDashboardUploadRoute
+  '/dashboard/users': typeof AuthenticatedDashboardUsersRoute
   '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
   '/api/public/districts': typeof ApiPublicDistrictsRoute
   '/api/public/search': typeof ApiPublicSearchRoute
@@ -109,8 +165,15 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
+  '/dashboard/api-keys': typeof AuthenticatedDashboardApiKeysRoute
+  '/dashboard/api-logs': typeof AuthenticatedDashboardApiLogsRoute
+  '/dashboard/datasets': typeof AuthenticatedDashboardDatasetsRoute
   '/dashboard/docs': typeof AuthenticatedDashboardDocsRoute
   '/dashboard/explorer': typeof AuthenticatedDashboardExplorerRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard/upload': typeof AuthenticatedDashboardUploadRoute
+  '/dashboard/users': typeof AuthenticatedDashboardUsersRoute
   '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
   '/api/public/districts': typeof ApiPublicDistrictsRoute
   '/api/public/search': typeof ApiPublicSearchRoute
@@ -125,8 +188,15 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/_authenticated/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
+  '/_authenticated/dashboard/api-keys': typeof AuthenticatedDashboardApiKeysRoute
+  '/_authenticated/dashboard/api-logs': typeof AuthenticatedDashboardApiLogsRoute
+  '/_authenticated/dashboard/datasets': typeof AuthenticatedDashboardDatasetsRoute
   '/_authenticated/dashboard/docs': typeof AuthenticatedDashboardDocsRoute
   '/_authenticated/dashboard/explorer': typeof AuthenticatedDashboardExplorerRoute
+  '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/_authenticated/dashboard/upload': typeof AuthenticatedDashboardUploadRoute
+  '/_authenticated/dashboard/users': typeof AuthenticatedDashboardUsersRoute
   '/api/public/autocomplete': typeof ApiPublicAutocompleteRoute
   '/api/public/districts': typeof ApiPublicDistrictsRoute
   '/api/public/search': typeof ApiPublicSearchRoute
@@ -141,8 +211,15 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | '/dashboard/analytics'
+    | '/dashboard/api-keys'
+    | '/dashboard/api-logs'
+    | '/dashboard/datasets'
     | '/dashboard/docs'
     | '/dashboard/explorer'
+    | '/dashboard/settings'
+    | '/dashboard/upload'
+    | '/dashboard/users'
     | '/api/public/autocomplete'
     | '/api/public/districts'
     | '/api/public/search'
@@ -155,8 +232,15 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | '/dashboard/analytics'
+    | '/dashboard/api-keys'
+    | '/dashboard/api-logs'
+    | '/dashboard/datasets'
     | '/dashboard/docs'
     | '/dashboard/explorer'
+    | '/dashboard/settings'
+    | '/dashboard/upload'
+    | '/dashboard/users'
     | '/api/public/autocomplete'
     | '/api/public/districts'
     | '/api/public/search'
@@ -170,8 +254,15 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/login'
     | '/signup'
+    | '/_authenticated/dashboard/analytics'
+    | '/_authenticated/dashboard/api-keys'
+    | '/_authenticated/dashboard/api-logs'
+    | '/_authenticated/dashboard/datasets'
     | '/_authenticated/dashboard/docs'
     | '/_authenticated/dashboard/explorer'
+    | '/_authenticated/dashboard/settings'
+    | '/_authenticated/dashboard/upload'
+    | '/_authenticated/dashboard/users'
     | '/api/public/autocomplete'
     | '/api/public/districts'
     | '/api/public/search'
@@ -273,6 +364,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAutocompleteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/dashboard/users': {
+      id: '/_authenticated/dashboard/users'
+      path: '/dashboard/users'
+      fullPath: '/dashboard/users'
+      preLoaderRoute: typeof AuthenticatedDashboardUsersRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/upload': {
+      id: '/_authenticated/dashboard/upload'
+      path: '/dashboard/upload'
+      fullPath: '/dashboard/upload'
+      preLoaderRoute: typeof AuthenticatedDashboardUploadRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/settings': {
+      id: '/_authenticated/dashboard/settings'
+      path: '/dashboard/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof AuthenticatedDashboardSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dashboard/explorer': {
       id: '/_authenticated/dashboard/explorer'
       path: '/dashboard/explorer'
@@ -287,18 +399,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardDocsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/dashboard/datasets': {
+      id: '/_authenticated/dashboard/datasets'
+      path: '/dashboard/datasets'
+      fullPath: '/dashboard/datasets'
+      preLoaderRoute: typeof AuthenticatedDashboardDatasetsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/api-logs': {
+      id: '/_authenticated/dashboard/api-logs'
+      path: '/dashboard/api-logs'
+      fullPath: '/dashboard/api-logs'
+      preLoaderRoute: typeof AuthenticatedDashboardApiLogsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/api-keys': {
+      id: '/_authenticated/dashboard/api-keys'
+      path: '/dashboard/api-keys'
+      fullPath: '/dashboard/api-keys'
+      preLoaderRoute: typeof AuthenticatedDashboardApiKeysRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/analytics': {
+      id: '/_authenticated/dashboard/analytics'
+      path: '/dashboard/analytics'
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof AuthenticatedDashboardAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedDashboardAnalyticsRoute: typeof AuthenticatedDashboardAnalyticsRoute
+  AuthenticatedDashboardApiKeysRoute: typeof AuthenticatedDashboardApiKeysRoute
+  AuthenticatedDashboardApiLogsRoute: typeof AuthenticatedDashboardApiLogsRoute
+  AuthenticatedDashboardDatasetsRoute: typeof AuthenticatedDashboardDatasetsRoute
   AuthenticatedDashboardDocsRoute: typeof AuthenticatedDashboardDocsRoute
   AuthenticatedDashboardExplorerRoute: typeof AuthenticatedDashboardExplorerRoute
+  AuthenticatedDashboardSettingsRoute: typeof AuthenticatedDashboardSettingsRoute
+  AuthenticatedDashboardUploadRoute: typeof AuthenticatedDashboardUploadRoute
+  AuthenticatedDashboardUsersRoute: typeof AuthenticatedDashboardUsersRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedDashboardAnalyticsRoute: AuthenticatedDashboardAnalyticsRoute,
+  AuthenticatedDashboardApiKeysRoute: AuthenticatedDashboardApiKeysRoute,
+  AuthenticatedDashboardApiLogsRoute: AuthenticatedDashboardApiLogsRoute,
+  AuthenticatedDashboardDatasetsRoute: AuthenticatedDashboardDatasetsRoute,
   AuthenticatedDashboardDocsRoute: AuthenticatedDashboardDocsRoute,
   AuthenticatedDashboardExplorerRoute: AuthenticatedDashboardExplorerRoute,
+  AuthenticatedDashboardSettingsRoute: AuthenticatedDashboardSettingsRoute,
+  AuthenticatedDashboardUploadRoute: AuthenticatedDashboardUploadRoute,
+  AuthenticatedDashboardUsersRoute: AuthenticatedDashboardUsersRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
 }
 
@@ -321,3 +475,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
