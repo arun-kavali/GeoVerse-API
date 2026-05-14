@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import logoAi from "@/assets/logo-ai.png";
 import {
   ShieldCheck,
   Zap,
@@ -31,7 +32,7 @@ function Landing() {
       <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
         <div className="container mx-auto flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground text-xs font-bold">AI</div>
+            <img src={logoAi} alt="All India logo" width={32} height={32} className="h-8 w-8 rounded-md object-contain" />
             <span className="text-base font-semibold tracking-tight">All India</span>
           </div>
           <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
@@ -159,7 +160,7 @@ function Landing() {
         <div className="container mx-auto grid gap-10 px-6 md:grid-cols-4">
           <div>
             <div className="flex items-center gap-2">
-              <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-xs font-bold">AI</div>
+              <img src={logoAi} alt="All India logo" width={32} height={32} loading="lazy" className="h-8 w-8 rounded-md bg-white/10 object-contain p-1" />
               <span className="font-semibold">All India</span>
             </div>
             <p className="mt-3 text-sm opacity-70">Standardized geographical data APIs for India.</p>
