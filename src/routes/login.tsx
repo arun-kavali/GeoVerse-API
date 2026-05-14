@@ -8,6 +8,9 @@ import { AuthSplitLayout } from "@/components/auth-split-layout";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/login")({
+  head: () => ({
+    meta: [{ title: "Login | GeoVerse API" }],
+  }),
   beforeLoad: async () => {
     const { data } = await supabase.auth.getSession();
     if (data.session) throw redirect({ to: "/dashboard" });

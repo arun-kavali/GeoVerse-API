@@ -20,6 +20,9 @@ import { ArrowUpRight, KeyRound, Activity, Database } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard/")({
+  head: () => ({
+    meta: [{ title: "Dashboard | GeoVerse API" }],
+  }),
   component: OverviewPage,
 });
 

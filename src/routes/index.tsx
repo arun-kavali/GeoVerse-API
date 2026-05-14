@@ -16,9 +16,9 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "All India Villages API — Standardized Geographical Data for India" },
-      { name: "description", content: "The ultimate API platform for accurate States, Districts, Sub-Districts, and 619K+ Villages of India." },
-      { property: "og:title", content: "All India Villages API" },
+      { title: "GeoVerse API" },
+      { name: "description", content: "Standardized Geographical Data for India" },
+      { property: "og:title", content: "GeoVerse API" },
       { property: "og:description", content: "Production-ready REST API for India's full geographic hierarchy." },
     ],
   }),

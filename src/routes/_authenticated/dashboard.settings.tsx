@@ -9,6 +9,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/dashboard/settings")({
+  head: () => ({
+    meta: [{ title: "Settings | GeoVerse API" }],
+  }),
   component: SettingsPage,
 });
 
